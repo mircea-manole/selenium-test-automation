@@ -12,6 +12,7 @@ public class BrowserManager {
     }
 
     public WebDriver getDriver() {
+        System.out.println();
         return driver;
     }
 }
