@@ -3,6 +3,7 @@ import org.automation.pageobjects.CreateAccountPage;
 import org.automation.pageobjects.HomePage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class CreateAccountTest {
     }
 
     @Test
+    @DisplayName("Validate create account fields test")
     public void validateCreateAccountFields() {
         createAccountPage.clickCreateAccountButton();
         List<String> labelsText = createAccountPage.getAccountLabels();
