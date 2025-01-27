@@ -2,10 +2,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.automation.framework.BrowserManager;
 import org.automation.pageobjects.HomePage;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -47,7 +44,7 @@ public class HomeTest {
         List<WebElement> listOfProducts = homePage.productsDisplayed();
         assertNotNull(listOfProducts, "List of products is null");
         assertEquals(6, listOfProducts.size(), "Number of products is: " + listOfProducts.size());
-        assertTrue(listOfProducts.get(2).getText().contains("Radiant Tee"));
+        assertTrue(listOfProducts.get(0).getText().contains("Radiant Tee"));
     }
 
     @AfterEach
