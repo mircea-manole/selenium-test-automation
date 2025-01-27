@@ -24,4 +24,12 @@ public class SeleniumActions {
     public List<WebElement> getElements(By locator) {
       return browserManager.getDriver().findElements(locator);
     }
+
+    public void clickElement(By locator) {
+        browserManager.getDriver().findElement(locator).click();
+    }
+
+    public String getElementText(By locator) {
+        return browserManager.getDriver().findElement(locator).getText();
+    }
 }
