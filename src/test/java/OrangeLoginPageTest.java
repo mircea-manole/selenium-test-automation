@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class OrangeLoginPageTest {
 
@@ -24,7 +25,7 @@ public class OrangeLoginPageTest {
 
     @Test
     @DisplayName("Orange search admin users test")
-    public void loginTest() {
+    public void loginTest() throws InterruptedException {
         login.loginOrange();
         List<WebElement> searchResults = login.searchItemLeftPanel("Admin");
         String result = null;
@@ -35,7 +36,10 @@ public class OrangeLoginPageTest {
         }
         assertEquals("Admin", result, "I found: " + result);
         login.clickOnResult("Admin");
-        login.searchAdminPage("johndoe1234", 5);
+        String resultsSearch = login.searchAdminPage("Username", 5);
+        assertEquals("Username", resultsSearch, "I found on search: " + resultsSearch);
+        String resetSearch = login.resetAdminSearch();
+        assertTrue(resultsSearch.isEmpty(), "Reset field has value: " + resetSearch);
     }
 
     @AfterEach
