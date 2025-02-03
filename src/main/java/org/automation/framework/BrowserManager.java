@@ -5,14 +5,18 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class BrowserManager {
 
-    WebDriver driver;
+    private static WebDriver driver;
 
     public void openBrowser() {
-      driver = new ChromeDriver();
+        driver = new ChromeDriver();
     }
 
     public WebDriver getDriver() {
         System.out.println();
         return driver;
+    }
+
+    public static void closeDriver() {
+        driver.close();
     }
 }
