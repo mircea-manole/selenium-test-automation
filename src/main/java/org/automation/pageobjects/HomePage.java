@@ -21,6 +21,11 @@ public class HomePage {
     private final static By SEARCH_FIELD = By.xpath("//input[@name='q']");
     private final static By ELEMENTS_FROM_SEARCH = By.xpath("//*[@id=\"search_autocomplete\"]//li//span[@class='qs-option-name']");
     private final static By SEARCH_RESULTS = By.xpath("//ol[@class='products list items product-items']//li//div//a[@class='product-item-link']");
+    private final static By FIRST_COLOR = By.xpath("(//div[@class='swatch-option color'])[1]");
+    private final static By ADD_TO_CART = By.xpath("//button[@id='product-addtocart-button']");
+    private final static By CART_TEXT = By.xpath("//strong[@class='product-item-name']");
+    private final static By CART = By.xpath("//div[@class='minicart-wrapper']");
+    private final static By CART_SPINNER = By.xpath("//span[@class='counter qty _block-content-loading']");
 
     public void openHomePage() {
         log.info("Open home page");
@@ -65,5 +70,20 @@ public class HomePage {
 
     public List<WebElement> getSearchResults() {
         return actions.getElements(SEARCH_RESULTS);
+    }
+
+    public void selectSize(String size) {
+        By SIZE = By.xpath("//div[@class='swatch-option text' and text()='" + size + "']");
+        actions.waitElementToBeClickable(SIZE, 10);
+        actions.clickElement(SIZE);
+        actions.clickElement(FIRST_COLOR);
+        actions.clickElement(ADD_TO_CART);
+    }
+
+    public String getCart() {
+        actions.waitToSpinnerToHide(CART_SPINNER, 10);
+        actions.clickElement(CART);
+        actions.waitFluentElementVisible(CART_TEXT, 10);
+        return actions.getElementText(CART_TEXT);
     }
 }
