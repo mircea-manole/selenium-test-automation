@@ -36,10 +36,10 @@ public class OrangeLoginPageTest {
         }
         assertEquals("Admin", result, "I found: " + result);
         login.clickOnResult("Admin");
-        String resultsSearch = login.searchAdminPage("Username", 5);
-        assertEquals("Username", resultsSearch, "I found on search: " + resultsSearch);
+        String resultsSearch = login.searchAdminPage("chetan", 5);
+        assertEquals("chetan", resultsSearch, "I found on search: " + resultsSearch);
         String resetSearch = login.resetAdminSearch();
-        assertTrue(resultsSearch.isEmpty(), "Reset field has value: " + resetSearch);
+        assertTrue(resetSearch.isEmpty(), "Reset field has value: " + resetSearch);
     }
 
     @AfterEach

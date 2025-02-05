@@ -1,9 +1,13 @@
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.automation.constants.Products;
 import org.automation.framework.BrowserManager;
 import org.automation.pageobjects.HomePage;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.openqa.selenium.WebElement;
 
@@ -29,6 +33,7 @@ public class HomeTest {
         assertEquals("Home Page", title, "Title of page was: " + title);
     }
 
+    @Tags(value = {@Tag("products"), @Tag("home")})
     @Test
     @DisplayName("Validate banner test")
     public void validateBanner() {
@@ -39,6 +44,7 @@ public class HomeTest {
         assertTrue(isBannerEnabled, "Banner is not enabled");
     }
 
+    @Tag("homeproducts")
     @Test
     @DisplayName("Validate products test")
     public void validateProducts() {
@@ -58,6 +64,26 @@ public class HomeTest {
         for (WebElement item : results) {
             assertTrue(item.getText().contains(testData), "I found item: " + item.getText());
         }
+    }
+
+    @Tag("product")
+    @Severity(SeverityLevel.CRITICAL)
+    @DisplayName("Search products test with enum")
+    @ParameterizedTest
+//    @EnumSource()
+    @EnumSource(value = Products.class, names = {"FIRST_PRODUCT", "FOURTH_PRODUCT"})
+    public void searchTestWithEnum(Products products) {
+        homePage.searchElementFromDropdown(products.getProduct());
+        List<WebElement> results = homePage.getSearchResults();
+        for (WebElement item : results) {
+            assertTrue(item.getText().contains(products.getProduct()), "I found item: " + item.getText());
+        }
+
+        String firstProduct = results.get(0).getText();
+        results.get(0).click();
+        homePage.selectSize("XL");
+        String productCart = homePage.getCart();
+        assertEquals(firstProduct, productCart);
     }
 
     @AfterEach
