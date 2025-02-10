@@ -42,6 +42,20 @@ public class OrangeLoginPageTest {
         assertTrue(resetSearch.isEmpty(), "Reset field has value: " + resetSearch);
     }
 
+    // file loader exception example
+//    @Test
+//    public void fileLoader() throws IOException {
+//        PropertiesLoader.loadFile();
+//        login.loginOrange();
+//    }
+
+    //run time exception
+//    @Test
+//    public void productsLoader() {
+//        DataTextLoader.productsLoader();
+//        login.loginOrange();
+//    }
+
     @AfterEach
     public void tearDown() {
         BrowserManager.closeDriver();
