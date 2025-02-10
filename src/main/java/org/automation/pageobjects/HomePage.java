@@ -2,6 +2,7 @@ package org.automation.pageobjects;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.automation.exceptions.ProductsException;
 import org.automation.framework.BrowserManager;
 import org.automation.framework.SeleniumActions;
 import org.openqa.selenium.By;
@@ -56,6 +57,9 @@ public class HomePage {
 
     public void searchElementFromDropdown(String searchElement) {
         log.info("Search for element: {}", searchElement);
+        if (searchElement == null || searchElement.isEmpty()) {
+            throw new ProductsException("Product search element is null or empty");
+        }
         actions.clickElement(SEARCH_FIELD);
         actions.sendKeys(SEARCH_FIELD, searchElement);
         actions.waitElementToBeClickable(By.xpath("(//*[@id=\"search_autocomplete\"]//li)[2]"), 5);
