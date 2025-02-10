@@ -8,6 +8,7 @@ import org.automation.framework.SeleniumActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.time.Duration;
 import java.util.List;
 
 public class LoginOrange {
@@ -73,6 +74,7 @@ public class LoginOrange {
         actions.clickElement(RESET_ADMIN_SEARCH);
 //        Thread.sleep(10000);
         actions.waitToSpinnerToHide(SPINNER, 10);
-        return actions.getElementText(By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[1]/div/div[2]/input"));
+        manager.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        return actions.getElementText(SEARCH_BOX_ADMIN_PAGE);
     }
 }
