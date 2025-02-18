@@ -6,6 +6,7 @@ import org.automation.constants.LoginDetails;
 import org.automation.framework.BrowserManager;
 import org.automation.framework.SeleniumActions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
 
 import java.time.Duration;
@@ -33,6 +34,9 @@ public class LoginOrange {
         manager.openBrowser();
         manager.getDriver().get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
         manager.getDriver().manage().window().maximize();
+
+        Dimension dimension = new Dimension(400,500);
+        manager.getDriver().manage().window().setSize(dimension);
     }
 
     public void loginOrange() {
