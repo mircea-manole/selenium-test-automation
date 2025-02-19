@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
@@ -21,7 +22,7 @@ public class SeleniumActions {
     }
 
     public boolean isElementDisplayed(By locator) {
-       return browserManager.getDriver().findElement(locator).isDisplayed();
+        return browserManager.getDriver().findElement(locator).isDisplayed();
     }
 
     public boolean isElementEnabled(By locator) {
@@ -29,7 +30,7 @@ public class SeleniumActions {
     }
 
     public List<WebElement> getElements(By locator) {
-      return browserManager.getDriver().findElements(locator);
+        return browserManager.getDriver().findElements(locator);
     }
 
     public void clickElement(By locator) {
@@ -68,5 +69,11 @@ public class SeleniumActions {
     public void waitToSpinnerToHide(By locator, int timeToWait) {
         Wait<WebDriver> wait = new WebDriverWait(browserManager.getDriver(), Duration.ofSeconds(timeToWait));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+    }
+
+    public void hoverElement(By locator, WebDriver driver) {
+        Actions actions = new Actions(driver);
+        WebElement element = driver.findElement(locator);
+        actions.moveToElement(element).build().perform();
     }
 }
