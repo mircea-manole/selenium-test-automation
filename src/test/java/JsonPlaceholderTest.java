@@ -1,3 +1,4 @@
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -5,6 +6,7 @@ import io.restassured.specification.RequestSpecification;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.automation.dto.PatchDTO;
+import org.automation.dto.Post;
 import org.automation.dto.PostDTO;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -92,5 +94,31 @@ public class JsonPlaceholderTest {
         assertEquals(map.get("body"), responsePatch.getBody());
         assertEquals(1, responsePatch.getId());
         assertEquals(1, responsePatch.getUserId());
+    }
+
+    @Test
+    public void postWithBuilder() throws Exception {
+        RequestSpecification request = RestAssured.given();
+        request.log().all();
+        request.header("Content-Type", ContentType.JSON);
+
+        Post requestPost = new Post.Builder()
+                .body("book chapter")
+                .title("book title")
+                .build();
+
+        request.body(new ObjectMapper().writeValueAsString(requestPost));
+
+        Response response =  request.post("/posts");
+
+        PostDTO responsePost = response.getBody().as(PostDTO.class);
+
+        log.info(responsePost.getBody());
+        log.info(responsePost.getId());
+        log.info(responsePost.getTitle());
+
+        assertEquals("book title", responsePost.getTitle());
+        assertEquals("book chapter", responsePost.getBody());
+        assertEquals(101, responsePost.getId());
     }
 }
