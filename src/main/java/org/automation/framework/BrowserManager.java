@@ -12,8 +12,7 @@ public class BrowserManager {
     private static WebDriver driver;
 
     public void openBrowser() {
-//        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
-                driver = new ChromeDriver(new ChromeOptions().addArguments("--headless").addArguments("--disable-gpu").addArguments("--no-sandbox"));
+        driver = new ChromeDriver(new ChromeOptions().addArguments("--headless").addArguments("--disable-gpu").addArguments("--no-sandbox"));
 
 //        driver = new ChromeDriver();
 //        URL gridUrl = null;
