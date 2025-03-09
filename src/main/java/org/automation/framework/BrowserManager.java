@@ -1,5 +1,7 @@
 package org.automation.framework;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -9,9 +11,11 @@ import java.net.URL;
 
 public class BrowserManager {
 
+    Logger log = LogManager.getRootLogger();
     private static WebDriver driver;
 
     public void openBrowser() {
+        log.info("Starting browser");
         driver = new ChromeDriver(new ChromeOptions().addArguments("--headless").addArguments("--disable-gpu").addArguments("--no-sandbox"));
 
 //        driver = new ChromeDriver();
