@@ -16,9 +16,9 @@ public class BrowserManager {
 
     public void openBrowser() {
         log.info("Starting browser");
-        driver = new ChromeDriver(new ChromeOptions().addArguments("--headless").addArguments("--disable-gpu").addArguments("--no-sandbox"));
+//        driver = new ChromeDriver(new ChromeOptions().addArguments("--headless").addArguments("--disable-gpu").addArguments("--no-sandbox"));
 
-//        driver = new ChromeDriver();
+        driver = new ChromeDriver();
 //        URL gridUrl = null;
 //        try {
 //            gridUrl = new URL("http://192.168.0.156:4444");
