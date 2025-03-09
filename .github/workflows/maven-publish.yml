@@ -1,3 +1,4 @@
+
 # This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
 
@@ -29,12 +30,10 @@ jobs:
         cache: maven
         
     - name: Install Chrome
-      run: |
-        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-        sudo mkdir -p /etc/apt/sources.list.d
-        sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-        sudo apt-get update
-        sudo apt-get -y install google-chrome-stable
+      run: | 
+          wget https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_132.0.6834.83-1_amd64.deb
+          sudo dpkg -i google-chrome-stable_132.0.6834.83-1_amd64.deb
+        
     - name: Install ChromeDriver
       run: |
         # Using specific ChromeDriver version for Chrome I used 132
