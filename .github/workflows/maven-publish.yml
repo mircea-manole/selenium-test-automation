@@ -10,9 +10,9 @@ name: Smoke Test
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "remote-run" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "remote-run" ]
 
 jobs:
   build:
