@@ -12,7 +12,7 @@ on:
   push:
     branches: [ "remote-run" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "remote-run" ]
 
 jobs:
   build:
