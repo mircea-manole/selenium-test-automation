@@ -10,9 +10,9 @@ name: Test automation runner
 
 on:
   push:
-    branches: [ "implementation-remote-runner" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "implementation-remote-runner" ]
+    branches: [ "main" ]
 
 jobs:
   build:
